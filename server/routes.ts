@@ -80,13 +80,36 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const data = await response.json();
       
       if (data.feed && data.feed.entry) {
-        const blogPosts = data.feed.entry.map((entry: any, index: number) => ({
-          id: entry.id?.$t || `post-${index}`,
-          title: entry.title?.$t || 'Untitled',
-          link: entry.link?.find((l: any) => l.rel === 'alternate')?.href || '#',
-          published: entry.published?.$t || new Date().toISOString(),
-          summary: entry.summary?.$t || entry.content?.$t?.replace(/<[^>]*>/g, '').substring(0, 200) || 'No description available',
-        }));
+        const blogPosts = data.feed.entry.map((entry: any, index: number) => {
+          // Extract image from content
+          let imageUrl = null;
+          const content = entry.content?.$t || entry.summary?.$t || '';
+          
+          // Look for images in the content
+          const imgMatches = content.match(/<img[^>]+src="([^">]+)"/);
+          if (imgMatches && imgMatches[1]) {
+            imageUrl = imgMatches[1];
+          }
+          
+          // Clean summary text
+          const cleanSummary = (entry.summary?.$t || entry.content?.$t || '')
+            .replace(/<[^>]*>/g, '')
+            .replace(/&nbsp;/g, ' ')
+            .replace(/&amp;/g, '&')
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .substring(0, 200)
+            .trim();
+
+          return {
+            id: entry.id?.$t || `post-${index}`,
+            title: entry.title?.$t || 'Untitled',
+            link: entry.link?.find((l: any) => l.rel === 'alternate')?.href || '#',
+            published: entry.published?.$t || new Date().toISOString(),
+            summary: cleanSummary || 'No description available',
+            imageUrl: imageUrl,
+          };
+        });
         
         res.json(blogPosts);
       } else {

@@ -9,6 +9,7 @@ interface BlogPost {
   link: string;
   published: string;
   summary: string;
+  imageUrl?: string;
   content?: string;
 }
 
@@ -111,9 +112,29 @@ export default function Blog() {
                 data-testid={`blog-post-${index}`}
                 onClick={() => window.open(post.link, '_blank')}
               >
-                {/* Blog post image placeholder */}
-                <div className="h-48 gradient-bg flex items-center justify-center">
-                  <Code className="text-4xl text-white" />
+                {/* Blog post image */}
+                <div className="h-48 relative overflow-hidden">
+                  {post.imageUrl ? (
+                    <img 
+                      src={post.imageUrl} 
+                      alt={post.title}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        // Fallback to gradient background if image fails to load
+                        const target = e.target as HTMLElement;
+                        target.style.display = 'none';
+                        const parent = target.parentElement;
+                        if (parent) {
+                          parent.className = "h-48 gradient-bg flex items-center justify-center";
+                          parent.innerHTML = '<svg class="text-4xl text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="64" height="64"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>';
+                        }
+                      }}
+                    />
+                  ) : (
+                    <div className="h-48 gradient-bg flex items-center justify-center">
+                      <Code className="text-4xl text-white" />
+                    </div>
+                  )}
                 </div>
                 <CardContent className="p-6">
                   <div className="flex items-center text-sm text-primary mb-2">
