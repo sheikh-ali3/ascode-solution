@@ -170,9 +170,9 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-6">Contact</h3>
             <div className="space-y-3 text-muted-foreground">
-              <p>7854 Al Fawaz, 4348 IRQAH District<br />Riyadh, KSA</p>
-              <p>info@ascodesolutions.com</p>
-              <p>+966-5535-01084</p>
+              <p>30 N Gould St STE R<br />Sheridan, WY, 82801</p>
+              <p>ascodesolution@gmail.com</p>
+              <p>+17163061120</p>
             </div>
           </div>
         </div>

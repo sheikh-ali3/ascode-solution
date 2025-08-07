@@ -161,9 +161,8 @@ export default function Contact() {
                     <div>
                       <h4 className="text-lg font-semibold mb-1">Address</h4>
                       <p className="text-muted-foreground">
-                        7854 Al Fawaz,<br />
-                        4348 IRQAH District,<br />
-                        Riyadh, KSA
+                        30 N Gould St STE R,<br />
+                        Sheridan, WY, 82801
                       </p>
                     </div>
                   </div>
@@ -171,14 +170,14 @@ export default function Contact() {
                     <Mail className="text-2xl gradient-text mt-1" />
                     <div>
                       <h4 className="text-lg font-semibold mb-1">Email</h4>
-                      <p className="text-muted-foreground">info@ascodesolutions.com</p>
+                      <p className="text-muted-foreground">ascodesolution@gmail.com</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4" data-testid="contact-phone">
                     <Phone className="text-2xl gradient-text mt-1" />
                     <div>
                       <h4 className="text-lg font-semibold mb-1">Phone</h4>
-                      <p className="text-muted-foreground">+966-5535-01084</p>
+                      <p className="text-muted-foreground">+17163061120</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4" data-testid="contact-hours">
@@ -186,8 +185,8 @@ export default function Contact() {
                     <div>
                       <h4 className="text-lg font-semibold mb-1">Business Hours</h4>
                       <p className="text-muted-foreground">
-                        Sunday - Thursday: 9:00 AM - 6:00 PM<br />
-                        Friday - Saturday: Closed
+                        Monday - Friday: 9:00 AM - 6:00 PM<br />
+                        Saturday - Sunday: Closed
                       </p>
                     </div>
                   </div>
