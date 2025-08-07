@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Code, Globe, Smartphone, Monitor, Users, Heart, Clock, Headphones } from "lucide-react";
+import { Code, Globe, Smartphone, Monitor, Users, Heart, Clock, Headphones, Palette } from "lucide-react";
 
 export default function Home() {
   return (
@@ -174,6 +174,155 @@ export default function Home() {
                     Learn More →
                   </Button>
                 </Link>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* About Us Section */}
+      <section className="py-20 bg-card/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-bold mb-6">About Ascode Solution</h2>
+              <p className="text-lg text-muted-foreground mb-6">
+                Established as a premier technology solutions provider, Ascode Solution
+                specializes in connecting businesses with cutting-edge digital solutions. We
+                are committed to transforming ideas into powerful, scalable applications that
+                drive business growth.
+              </p>
+              <p className="text-lg text-muted-foreground mb-6">
+                Our expertise spans across web development, mobile applications, desktop
+                software, database management, UI/UX design, and SEO optimization. We pride
+                ourselves on delivering reliable, secure, and scalable solutions.
+              </p>
+              <Link href="/about">
+                <Button
+                  data-testid="home-learn-more-about"
+                  variant="outline"
+                  className="border-primary text-primary hover:bg-primary hover:text-white"
+                >
+                  Learn More About Us
+                </Button>
+              </Link>
+            </div>
+            <Card className="glass-card">
+              <CardContent className="p-8">
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="text-center" data-testid="home-stat-projects">
+                    <div className="text-3xl font-bold gradient-text">50+</div>
+                    <div className="text-muted-foreground">Projects Completed</div>
+                  </div>
+                  <div className="text-center" data-testid="home-stat-clients">
+                    <div className="text-3xl font-bold gradient-text">30+</div>
+                    <div className="text-muted-foreground">Happy Clients</div>
+                  </div>
+                  <div className="text-center" data-testid="home-stat-experience">
+                    <div className="text-3xl font-bold gradient-text">5+</div>
+                    <div className="text-muted-foreground">Years Experience</div>
+                  </div>
+                  <div className="text-center" data-testid="home-stat-support">
+                    <div className="text-3xl font-bold gradient-text">24/7</div>
+                    <div className="text-muted-foreground">Support</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Us Section */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Get In Touch</h2>
+            <p className="text-xl text-muted-foreground">Ready to start your next project?</p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Contact Information */}
+            <Card className="glass-card">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
+                <div className="space-y-6">
+                  <div className="flex items-start space-x-4" data-testid="home-contact-address">
+                    <div className="w-12 h-12 gradient-bg rounded-full flex items-center justify-center">
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-semibold mb-1">Address</h4>
+                      <p className="text-muted-foreground">
+                        7854 Al Fawaz,<br />
+                        4348 IRQAH District,<br />
+                        Riyadh, KSA
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-4" data-testid="home-contact-email">
+                    <div className="w-12 h-12 gradient-bg rounded-full flex items-center justify-center">
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-semibold mb-1">Email</h4>
+                      <p className="text-muted-foreground">info@ascodesolution.com</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-4" data-testid="home-contact-phone">
+                    <div className="w-12 h-12 gradient-bg rounded-full flex items-center justify-center">
+                      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-semibold mb-1">Phone</h4>
+                      <p className="text-muted-foreground">+966-5535-01084</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Quick Contact Form */}
+            <Card className="glass-card">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold mb-6">Quick Contact</h3>
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="p-4 border border-border rounded-lg hover:border-primary transition-colors cursor-pointer text-center" data-testid="home-quick-web-dev">
+                      <Globe className="text-2xl gradient-text mb-2 mx-auto" />
+                      <div className="text-sm font-medium">Web Development</div>
+                    </div>
+                    <div className="p-4 border border-border rounded-lg hover:border-primary transition-colors cursor-pointer text-center" data-testid="home-quick-mobile-apps">
+                      <Smartphone className="text-2xl gradient-text mb-2 mx-auto" />
+                      <div className="text-sm font-medium">Mobile Apps</div>
+                    </div>
+                    <div className="p-4 border border-border rounded-lg hover:border-primary transition-colors cursor-pointer text-center" data-testid="home-quick-desktop-apps">
+                      <Monitor className="text-2xl gradient-text mb-2 mx-auto" />
+                      <div className="text-sm font-medium">Desktop Apps</div>
+                    </div>
+                    <div className="p-4 border border-border rounded-lg hover:border-primary transition-colors cursor-pointer text-center" data-testid="home-quick-ui-ux">
+                      <Palette className="text-2xl gradient-text mb-2 mx-auto" />
+                      <div className="text-sm font-medium">UI/UX Design</div>
+                    </div>
+                  </div>
+                  <div className="text-center pt-6">
+                    <Link href="/contact">
+                      <Button
+                        data-testid="home-get-full-contact"
+                        className="gradient-bg text-white hover:opacity-90 px-8 py-3"
+                      >
+                        Get Full Contact Form
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </div>
