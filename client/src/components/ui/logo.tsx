@@ -9,8 +9,8 @@ export function Logo({ className = "" }: { className?: string }) {
         className="w-14 h-14 object-contain"
       />
       <div className="hidden sm:block">
-        <div className="gradient-text font-bold text-lg">AS CODE</div>
-        <div className="gradient-text font-medium text-sm">SOLUTIONS</div>
+        <div className="gradient-text font-bold text-lg">ASCODE</div>
+        <div className="gradient-text font-medium text-sm">SOLUTION</div>
       </div>
     </div>
   );
