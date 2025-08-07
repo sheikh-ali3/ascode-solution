@@ -1,4 +1,4 @@
-import logoPath from "@assets/logo final_1754566358354.jpg";
+import logoPath from "@assets/logo_final-removebg_1754570608794.png";
 
 export function Logo({ className = "" }: { className?: string }) {
   return (
@@ -6,7 +6,7 @@ export function Logo({ className = "" }: { className?: string }) {
       <img 
         src={logoPath} 
         alt="Ascode Solutions Logo" 
-        className="w-12 h-12 object-contain"
+        className="w-14 h-14 object-contain"
       />
       <div className="hidden sm:block">
         <div className="gradient-text font-bold text-lg">AS CODE</div>
