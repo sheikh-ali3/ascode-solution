@@ -68,6 +68,36 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Blog posts from Blogspot RSS
+  app.get("/api/blog", async (req, res) => {
+    try {
+      const response = await fetch('https://theascodesolution.blogspot.com/feeds/posts/default?alt=json');
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      
+      if (data.feed && data.feed.entry) {
+        const blogPosts = data.feed.entry.map((entry: any, index: number) => ({
+          id: entry.id?.$t || `post-${index}`,
+          title: entry.title?.$t || 'Untitled',
+          link: entry.link?.find((l: any) => l.rel === 'alternate')?.href || '#',
+          published: entry.published?.$t || new Date().toISOString(),
+          summary: entry.summary?.$t || entry.content?.$t?.replace(/<[^>]*>/g, '').substring(0, 200) || 'No description available',
+        }));
+        
+        res.json(blogPosts);
+      } else {
+        res.json([]);
+      }
+    } catch (error) {
+      console.error("Blog fetch error:", error);
+      res.status(500).json({ error: "Failed to fetch blog posts" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

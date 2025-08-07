@@ -1,98 +1,138 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Code, Shield, Database, Palette, Search, Cloud, Calendar } from "lucide-react";
+import { Code, Calendar, ExternalLink, Loader2 } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { Button } from "@/components/ui/button";
+
+interface BlogPost {
+  id: string;
+  title: string;
+  link: string;
+  published: string;
+  summary: string;
+  content?: string;
+}
+
+async function fetchBlogPosts(): Promise<BlogPost[]> {
+  try {
+    const response = await fetch('/api/blog');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching blog posts:', error);
+    return [];
+  }
+}
 
 export default function Blog() {
-  const blogPosts = [
-    {
-      id: 1,
-      title: "The Future of Web Development: Trends to Watch in 2025",
-      category: "Technology",
-      date: "Dec 15, 2024",
-      description: "Exploring the latest trends in web development including AI integration, progressive web apps, and modern frameworks.",
-      icon: Code,
-    },
-    {
-      id: 2,
-      title: "Mobile App Security: Best Practices for 2025",
-      category: "Security",
-      date: "Dec 10, 2024",
-      description: "Essential security measures every mobile app should implement to protect user data and maintain trust.",
-      icon: Shield,
-    },
-    {
-      id: 3,
-      title: "Database Optimization: Scaling for Modern Applications",
-      category: "Performance",
-      date: "Dec 5, 2024",
-      description: "Strategies for optimizing database performance and scaling applications for high-traffic scenarios.",
-      icon: Database,
-    },
-    {
-      id: 4,
-      title: "UI/UX Design Trends That Will Dominate 2025",
-      category: "Design",
-      date: "Nov 28, 2024",
-      description: "From micro-interactions to inclusive design, discover the trends shaping the future of user experience.",
-      icon: Palette,
-    },
-    {
-      id: 5,
-      title: "SEO in the Age of AI: Adapting Your Strategy",
-      category: "Marketing",
-      date: "Nov 20, 2024",
-      description: "How artificial intelligence is changing SEO and what businesses need to know to stay competitive.",
-      icon: Search,
-    },
-    {
-      id: 6,
-      title: "Cloud Migration: A Complete Guide for Businesses",
-      category: "Infrastructure",
-      date: "Nov 15, 2024",
-      description: "Everything you need to know about migrating your business applications to the cloud successfully.",
-      icon: Cloud,
-    },
-  ];
+  const { data: blogPosts = [], isLoading, error } = useQuery({
+    queryKey: ['/api/blog'],
+    queryFn: fetchBlogPosts,
+  });
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  };
+
+  const truncateText = (text: string, maxLength: number = 150) => {
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength).replace(/\s+\S*$/, '') + '...';
+  };
 
   return (
     <div className="pt-32 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold mb-4">Our Blog</h1>
-          <p className="text-xl text-muted-foreground">Insights, updates, and tech trends</p>
+          <p className="text-xl text-muted-foreground">
+            Latest insights and updates from Ascode Solution
+          </p>
+          <Button
+            variant="outline"
+            className="mt-4 border-primary text-primary hover:bg-primary hover:text-white"
+            onClick={() => window.open('https://theascodesolution.blogspot.com/', '_blank')}
+            data-testid="visit-full-blog"
+          >
+            <ExternalLink className="w-4 h-4 mr-2" />
+            Visit Our Full Blog
+          </Button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogPosts.map((post) => {
-            const IconComponent = post.icon;
-            return (
+        {isLoading && (
+          <div className="flex justify-center items-center py-20">
+            <Loader2 className="w-8 h-8 animate-spin text-primary" />
+            <span className="ml-2 text-lg">Loading blog posts...</span>
+          </div>
+        )}
+
+        {error && (
+          <div className="text-center py-20">
+            <div className="text-red-500 mb-4">Error loading blog posts</div>
+            <Button
+              variant="outline"
+              onClick={() => window.open('https://theascodesolution.blogspot.com/', '_blank')}
+              data-testid="visit-blog-error"
+            >
+              <ExternalLink className="w-4 h-4 mr-2" />
+              Visit Blog Directly
+            </Button>
+          </div>
+        )}
+
+        {!isLoading && !error && blogPosts.length === 0 && (
+          <div className="text-center py-20">
+            <Code className="text-6xl text-muted-foreground mb-6 mx-auto" />
+            <h3 className="text-2xl font-semibold mb-4">No Blog Posts Yet</h3>
+            <p className="text-muted-foreground mb-6">
+              We're working on creating amazing content for you. Check back soon!
+            </p>
+            <Button
+              variant="outline"
+              onClick={() => window.open('https://theascodesolution.blogspot.com/', '_blank')}
+              data-testid="visit-blog-empty"
+            >
+              <ExternalLink className="w-4 h-4 mr-2" />
+              Visit Our Blog
+            </Button>
+          </div>
+        )}
+
+        {!isLoading && !error && blogPosts.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {blogPosts.map((post, index) => (
               <Card
                 key={post.id}
                 className="glass-card overflow-hidden hover:transform hover:scale-105 transition-all duration-300 cursor-pointer"
-                data-testid={`blog-post-${post.id}`}
+                data-testid={`blog-post-${index}`}
+                onClick={() => window.open(post.link, '_blank')}
               >
                 {/* Blog post image placeholder */}
                 <div className="h-48 gradient-bg flex items-center justify-center">
-                  <IconComponent className="text-4xl text-white" />
+                  <Code className="text-4xl text-white" />
                 </div>
                 <CardContent className="p-6">
                   <div className="flex items-center text-sm text-primary mb-2">
                     <Calendar className="w-4 h-4 mr-2" />
-                    {post.category} • {post.date}
+                    {formatDate(post.published)}
                   </div>
                   <h3 className="text-xl font-semibold mb-3 line-clamp-2">{post.title}</h3>
-                  <p className="text-muted-foreground mb-4 line-clamp-3">{post.description}</p>
-                  <a
-                    href="#"
-                    data-testid={`blog-read-more-${post.id}`}
-                    className="text-primary hover:text-primary/80 font-medium"
-                  >
-                    Read More →
-                  </a>
+                  <p className="text-muted-foreground mb-4 line-clamp-3">
+                    {truncateText(post.summary.replace(/<[^>]*>/g, ''))}
+                  </p>
+                  <div className="flex items-center text-primary hover:text-primary/80 font-medium">
+                    <span>Read More</span>
+                    <ExternalLink className="w-4 h-4 ml-2" />
+                  </div>
                 </CardContent>
               </Card>
-            );
-          })}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

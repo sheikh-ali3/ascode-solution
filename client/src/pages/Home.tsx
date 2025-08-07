@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Code, Globe, Smartphone, Monitor, Users, Heart, Clock, Headphones, Palette } from "lucide-react";
+import heroImage from "@assets/Screenshot 2025-08-07 090223_1754571754896.jpg";
 
 export default function Home() {
   return (
@@ -42,8 +43,13 @@ export default function Home() {
               </div>
             </div>
             <div className="hidden lg:block relative">
-              <Card className="glass-card h-96 flex items-center justify-center">
-                <Code className="text-8xl gradient-text" />
+              <Card className="glass-card h-96 flex items-center justify-center p-4">
+                <img 
+                  src={heroImage} 
+                  alt="Professional workspace with laptop" 
+                  className="w-full h-full object-cover rounded-lg"
+                  data-testid="hero-workspace-image"
+                />
               </Card>
             </div>
           </div>
