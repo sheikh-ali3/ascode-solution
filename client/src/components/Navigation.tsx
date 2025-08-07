@@ -24,7 +24,7 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
+    <nav className="fixed top-0 w-full z-50 bg-background/90 backdrop-blur-md border-b border-border shadow-lg shadow-primary/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -37,16 +37,16 @@ export default function Navigation() {
             <div className="ml-10 flex items-baseline space-x-8">
               {navItems.map((item) => (
                 <Link key={item.href} href={item.href}>
-                  <a
+                  <span
                     data-testid={`nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
-                    className={`px-3 py-2 text-sm font-medium transition-colors ${
+                    className={`px-3 py-2 text-sm font-medium transition-colors cursor-pointer ${
                       isActive(item.href)
                         ? "text-white"
                         : "text-muted-foreground hover:text-primary"
                     }`}
                   >
                     {item.label}
-                  </a>
+                  </span>
                 </Link>
               ))}
               <Link href="/contact">
@@ -80,9 +80,9 @@ export default function Navigation() {
           <div className="px-2 pt-2 pb-3 space-y-1">
             {navItems.map((item) => (
               <Link key={item.href} href={item.href}>
-                <a
+                <span
                   data-testid={`mobile-nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
-                  className={`block px-3 py-2 text-base font-medium ${
+                  className={`block px-3 py-2 text-base font-medium cursor-pointer ${
                     isActive(item.href)
                       ? "text-white"
                       : "text-muted-foreground hover:text-primary"
@@ -90,17 +90,17 @@ export default function Navigation() {
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.label}
-                </a>
+                </span>
               </Link>
             ))}
             <Link href="/contact">
-              <a
+              <span
                 data-testid="mobile-nav-contact"
-                className="block text-muted-foreground hover:text-primary px-3 py-2 text-base font-medium"
+                className="block text-muted-foreground hover:text-primary px-3 py-2 text-base font-medium cursor-pointer"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Contact
-              </a>
+              </span>
             </Link>
           </div>
         </div>

@@ -4,7 +4,7 @@ import { Linkedin, Twitter, Facebook } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-background/80 border-t border-border">
+    <footer className="bg-background/90 border-t border-border backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
@@ -42,62 +42,62 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <Link href="/services">
-                  <a
+                  <span
                     data-testid="footer-web-development"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
                   >
                     Web Development
-                  </a>
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="/services">
-                  <a
+                  <span
                     data-testid="footer-mobile-apps"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
                   >
                     Mobile Apps
-                  </a>
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="/services">
-                  <a
+                  <span
                     data-testid="footer-desktop-apps"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
                   >
                     Desktop Apps
-                  </a>
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="/services">
-                  <a
+                  <span
                     data-testid="footer-database-services"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
                   >
                     Database Services
-                  </a>
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="/services">
-                  <a
+                  <span
                     data-testid="footer-ui-ux-design"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
                   >
                     UI/UX Design
-                  </a>
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="/services">
-                  <a
+                  <span
                     data-testid="footer-seo-services"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
                   >
                     SEO Services
-                  </a>
+                  </span>
                 </Link>
               </li>
             </ul>
@@ -108,42 +108,42 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <Link href="/about">
-                  <a
+                  <span
                     data-testid="footer-about-us"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
                   >
                     About Us
-                  </a>
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="/team">
-                  <a
+                  <span
                     data-testid="footer-our-team"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
                   >
                     Our Team
-                  </a>
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="/career">
-                  <a
+                  <span
                     data-testid="footer-careers"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
                   >
                     Careers
-                  </a>
+                  </span>
                 </Link>
               </li>
               <li>
                 <Link href="/blog">
-                  <a
+                  <span
                     data-testid="footer-blog"
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
                   >
                     Blog
-                  </a>
+                  </span>
                 </Link>
               </li>
               <li>
